@@ -5,7 +5,7 @@
         <field name="type">product</field>
         <field name="name">Dangerous product</field>
         <field name="is_dangerous_waste">True</field>
-        <field name="dangerous_class" ref="l10n_eu_product_adr.dangerous_class_14"/>
+        <field name="dangerous_class_id" ref="l10n_eu_product_adr.dangerous_class_14"/>
     </record>
 
 </odoo>

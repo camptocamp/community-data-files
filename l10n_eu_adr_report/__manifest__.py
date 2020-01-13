@@ -11,16 +11,7 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": [
-        "l10n_eu_product_adr",
-        "stock",
-        "delivery",
-    ],
-    "data": [
-        "report/dangerous_good_delivery_report.xml",
-        "views/assets.xml",
-    ],
-    "demo": [
-        "data/product_picking_demo.xml",
-    ]
+    "depends": ["l10n_eu_product_adr", "stock", "delivery"],
+    "data": ["report/dangerous_good_delivery_report.xml", "views/assets.xml"],
+    "demo": ["data/product_picking_demo.xml"],
 }

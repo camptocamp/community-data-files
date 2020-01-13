@@ -1,6 +1,6 @@
 # Copyright 2019 Iryna Vyshnevska (Camptocamp)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
-from odoo import _, api, models, fields
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -12,13 +12,8 @@ class ProductTemplate(models.Model):
         ondelete="restrict",
         string="Dangerous Class",
     )
-    un_number = fields.Char(
-        string='UN Number',
-        size=4,
-    )
-    is_dangerous_good = fields.Boolean(
-        help="This product belongs to a dangerous class"
-    )
+    un_number = fields.Char(string="UN Number", size=4)
+    is_dangerous_good = fields.Boolean(help="This product belongs to a dangerous class")
     is_dangerous_waste = fields.Boolean(
         help="Waste from this product belongs to a dangerous class"
     )
@@ -32,7 +27,7 @@ class ProductTemplate(models.Model):
         ("un_number_unique", "unique(un_number)", "This UN code already exist")
     ]
 
-    @api.constrains('dangerous_component_ids', 'dangerous_class_id')
+    @api.constrains("dangerous_component_ids", "dangerous_class_id")
     def _check_dangerous_choise(self):
         for record in self:
             if record.dangerous_component_ids and record.dangerous_class_id:
@@ -46,6 +41,6 @@ class ProductTemplate(models.Model):
     def get_full_class_name(self):
         class_name = "{} {}".format(self.un_number, self.dangerous_class_id.name)
         if self.is_dangerous_waste:
-            return _('WASTE ') + class_name
+            return _("WASTE ") + class_name
         else:
             return class_name

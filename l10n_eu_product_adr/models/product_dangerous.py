@@ -1,6 +1,6 @@
 # Copyright 2019 Iryna Vyshnevska (Camptocamp)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
-from odoo import models, fields
+from odoo import fields, models
 
 
 class ProductDangerousClass(models.Model):
@@ -16,9 +16,7 @@ class ProductDangerousClass(models.Model):
         string="Dangerous Type",
     )
 
-    _sql_constraints = [
-        ("code_unique", "unique(code)", "This code already exist")
-    ]
+    _sql_constraints = [("code_unique", "unique(code)", "This code already exist")]
 
 
 class ProductDangerousClassType(models.Model):

@@ -1,6 +1,6 @@
 # Copyright 2019 Iryna Vyshnevska (Camptocamp)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
-from odoo import models, fields
+from odoo import fields, models
 
 
 class ProductDangerousComponent(models.Model):
@@ -22,6 +22,4 @@ class ProductDangerousComponent(models.Model):
     weight = fields.Float(
         help="The weight of dangerous product in main product in kg. "
     )
-    volume = fields.Float(
-        help="The volume of dangerous product in main product in m3."
-    )
+    volume = fields.Float(help="The volume of dangerous product in main product in m3.")

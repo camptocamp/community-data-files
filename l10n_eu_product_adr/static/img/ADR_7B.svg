@@ -8,15 +8,15 @@
 <sodipodi:namedview  showgrid="false" inkscape:cy="106.73702" inkscape:cx="163.95936" inkscape:zoom="4.8715844" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" id="base" inkscape:snap-bbox="true" inkscape:snap-global="true" inkscape:snap-bbox-midpoints="true" inkscape:snap-smooth-nodes="true" inkscape:guide-bbox="true" inkscape:snap-object-midpoints="true" inkscape:object-nodes="true" inkscape:bbox-paths="true" inkscape:snap-center="true" inkscape:object-paths="true" inkscape:bbox-nodes="true" fit-margin-left="0" fit-margin-top="0" inkscape:window-height="1018" inkscape:window-width="1920" inkscape:pageshadow="2" inkscape:current-layer="layer1" inkscape:window-x="-8" inkscape:window-y="-8" inkscape:window-maximized="1" inkscape:pageopacity="0.0" fit-margin-bottom="0" fit-margin-right="0" inkscape:snap-intersection-paths="true" inkscape:snap-bbox-edge-midpoints="true" showguides="true" inkscape:document-units="px">
 	</sodipodi:namedview>
 <defs>
-	
-	
+
+
 		<inkscape:perspective  id="perspective2979" sodipodi:type="inkscape:persp3d" inkscape:vp_z="744.09448 : 526.18109 : 1" inkscape:vp_x="0 : 526.18109 : 1" inkscape:vp_y="0 : 1000 : 0" inkscape:persp3d-origin="372.04724 : 350.78739 : 1">
 		</inkscape:perspective>
 </defs>
 <g id="layer1" transform="translate(-204.03606,314.80785)" inkscape:label="Calque 1" inkscape:groupmode="layer">
-	
+
 		<rect x="253.276" y="-265.568" transform="matrix(0.7071 -0.7071 0.7071 0.7071 214.2572 216.4927)" fill="#FFFFFF" width="230.365" height="230.366"/>
-	
+
 		<rect id="rect3165" x="253.276" y="-265.568" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 735.3369 3.8168)" fill="none" stroke="#000000" stroke-width="3.0595" stroke-linecap="square" stroke-dasharray="12.2378,12.2378" stroke-dashoffset="7" width="230.366" height="230.365"/>
 	<g id="flowRoot3042" transform="matrix(10.809755,0,0,10.809755,-706.32777,-848.20696)">
 		<path id="path4444" d="M91.237,66.647h0.314v-0.558h0.313c0.079,0,0.136,0.017,0.172,0.05c0.035,0.035,0.057,0.09,0.066,0.166
@@ -56,10 +56,10 @@
 	<g id="g429" transform="matrix(3.8059094,0,0,-3.8059094,227.33578,-150.37734)">
 		<path id="path431" inkscape:connector-curvature="0" sodipodi:nodetypes="ccc" fill="#FFF600" d="M0,0l37.44,37.38L74.4,0.24"/>
 	</g>
-	
+
 		<path id="path441" inkscape:connector-curvature="0" fill="none" stroke="#1F1A17" stroke-width="1.6442" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
 		M406-54.834h-72.342v-39.459H406V-54.834L406-54.834z"/>
-	
+
 		<path id="path449" inkscape:connector-curvature="0" fill="none" stroke="#1F1A17" stroke-width="1.8268" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
 		M229.162-151.291h281.333"/>
 	<g id="flowRoot3135" transform="matrix(5.0186927,0,0,5.0186927,82.979377,-340.84335)">
@@ -121,16 +121,16 @@
 			l0.458-0.682h-0.344l-0.29,0.456l0,0l-0.281-0.456H58.94l0.46,0.68L58.9,56.505z"/>
 	</g>
 	<g id="g451" transform="matrix(3.8059094,0,0,-3.8059094,226.42236,-151.29076)">
-		
+
 			<path id="path453" inkscape:connector-curvature="0" fill="none" stroke="#1F1A17" stroke-width="0.719" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
 			M0,0l37.44-37.2L74.64,0l-37.2,37.14L0,0z"/>
 	</g>
 	<path id="path499" inkscape:connector-curvature="0" fill="#DA251D" d="M435.596-123.888h5.479v-20.096h-5.479V-123.888z"/>
 	<path id="path503" inkscape:connector-curvature="0" fill="#DA251D" d="M426.461-123.888h5.48v-20.096h-5.48V-123.888z"/>
-	
+
 		<path id="path3839" inkscape:connector-curvature="0" sodipodi:nodetypes="cc" fill="none" stroke="#000000" stroke-width="2" stroke-dasharray="2,2" d="
 		M365.748-101.139l45.5-0.001"/>
-	
+
 		<path id="line158" inkscape:connector-curvature="0" sodipodi:nodetypes="cc" fill="none" stroke="#000000" stroke-width="2" stroke-dasharray="2,2" d="
 		M362.349-115.681h69.499"/>
 	<g id="flowRoot3155" transform="matrix(6.2208855,0,0,6.2208855,-282.00177,-514.86825)">
@@ -209,7 +209,7 @@
 			c0.491,0.616,0.982,1.228,1.413,1.907c0.43,0.675,0.861,1.354,1.229,2.03c0.37,0.676,0.738,1.412,1.046,2.151
 			c0.308,0.74,0.614,1.477,0.861,2.275c0.244,0.801,0.429,1.537,0.614,2.337c0.185,0.799,0.31,1.599,0.37,2.46
 			c0.06,0.8,0.121,1.66,0.121,2.521h57.561C504.896-220.391,490.013-246.219,463.816-261.347z"/>
-		
+
 			<circle id="circle24-9" sodipodi:rx="16.419001" sodipodi:ry="16.419001" sodipodi:cx="251.858" sodipodi:cy="157.903" cx="422.676" cy="-190.135" r="16.419">
 		</circle>
 	</g>

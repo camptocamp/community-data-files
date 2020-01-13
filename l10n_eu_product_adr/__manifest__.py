@@ -3,7 +3,7 @@
 {
     "name": "ADR Products",
     "summary": "Allows to set appropriate danger class and components",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "development_status": "Alpha",
     "category": "Product",
     "website": "https://github.com/OCA/product-attribute",

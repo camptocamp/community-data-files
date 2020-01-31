@@ -6,6 +6,7 @@ from odoo import models
 
 class DangerousDeliveryADR(models.AbstractModel):
     _name = "report.l10n_eu_adr_report.report_delivery_dangerous"
+    _description = "Dangerous Delivery Report ADR"
 
     def _get_report_values(self, docids, data=None):
         docs = self.env["stock.picking"]

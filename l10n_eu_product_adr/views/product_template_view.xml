@@ -13,19 +13,9 @@
                             <field name="is_dangerous_waste"/>
                             <field name="un_number" attrs="{'invisible': [('is_dangerous_good', '=', False), ('is_dangerous_waste', '=', False)],
                             'required': ['|',('is_dangerous_good', '=', True), ('is_dangerous_waste', '=', True)]}"/>
-                            <field name="dangerous_class_id" attrs="{'invisible': [('is_dangerous_good', '=', False), ('is_dangerous_waste', '=', False)],
-                            'required': ['|',('is_dangerous_good', '=', True), ('is_dangerous_waste', '=', True)]}"/>
                         </group>
-                        <field name="dangerous_component_ids">
-                            <tree editable="bottom">
-                                <field name="component_product_id" domain="['|', ('is_dangerous_good', '=', 'True'), ('is_dangerous_waste', '=', 'True')]"/>
-                                <field name="dangerous_class_id"/>
-                                <field name="weight"/>
-                                <field name="volume"/>
-                            </tree>
-                        </field>
+                        <!-- <field name="dangerous_component_ids"/> -->
                     </group>
-
                 </page>
             </xpath>
         </field>

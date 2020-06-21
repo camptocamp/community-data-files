@@ -10,16 +10,3 @@ class ProductDangerousComponent(models.Model):
     product_template_id = fields.Many2one(
         comodel_name="product.template", required=True, ondelete="cascade"
     )
-    component_product_id = fields.Many2one(
-        comodel_name="product.template", string="Product", required=True
-    )
-    dangerous_class_id = fields.Many2one(
-        comodel_name="product.dangerous.class",
-        related="component_product_id.dangerous_class_id",
-        ondelete="restrict",
-        string="Dangerous Class",
-    )
-    weight = fields.Float(
-        help="The weight of dangerous product in main product in kg. "
-    )
-    volume = fields.Float(help="The volume of dangerous product in main product in m3.")

@@ -22,10 +22,10 @@ class ProductTemplate(models.Model):
         ("un_number_unique", "unique(un_number)", "This UN code already exist")
     ]
 
-    @api.constrains("dangerous_component_ids", "dangerous_class_id")
+    @api.constrains("dangerous_component_ids")
     def _check_dangerous_choise(self):
         for record in self:
-            if record.dangerous_component_ids and record.dangerous_class_id:
+            if record.dangerous_component_ids:
                 raise ValidationError(
                     _(
                         "Product can not contain dangerous components and \
@@ -34,7 +34,7 @@ class ProductTemplate(models.Model):
                 )
 
     def get_full_class_name(self):
-        class_name = "{} {}".format(self.un_number, self.dangerous_class_id.name)
+        class_name = "{}".format(self.un_number)
         if self.is_dangerous_waste:
             return _("WASTE ") + class_name
         else:

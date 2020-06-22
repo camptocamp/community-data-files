@@ -26,14 +26,15 @@ class DangerousDeliveryADR(models.AbstractModel):
         return docargs
 
     def _prepare_dangerous_lines(self, pickings):
-        vals = []
-        pickings.ensure_one()
-        for move_line in pickings.move_line_ids:
-            if move_line.product_id.dangerous_component_ids:
-                vals += self._get_dangerous_class_line_vals(move_line)
-            elif move_line.product_id.dangerous_class_id:
-                vals += self._get_dangerous_component_line_vals(move_line)
-        return vals
+        # TODO report needs fixing as for now it cannot prepare any values for 
+        # the report
+        pass
+        # vals = []
+        # pickings.ensure_one()
+        # for move_line in pickings.move_line_ids:
+        #     if move_line.product_id.dangerous_component_ids:
+        #         vals += self._get_dangerous_class_line_vals(move_line)
+        # return vals
 
     def _get_dangerous_class_line_vals(self, move):
         vals = []
@@ -43,25 +44,8 @@ class DangerousDeliveryADR(models.AbstractModel):
                 {
                     "name": product.name,
                     "class": product.get_full_class_name(),
-                    "division": component.dangerous_class_id.class_type_id.division,
-                    "weight": component.weight * move.qty_done,
-                    "volume": component.volume * move.qty_done,
                     "gross_weight": move.move_id.weight,
                 }
             )
         return vals
 
-    def _get_dangerous_component_line_vals(self, move):
-        product = move.product_id.product_tmpl_id
-        vals = []
-        vals.append(
-            {
-                "name": product.name,
-                "class": product.get_full_class_name(),
-                "division": product.dangerous_class_id.class_type_id.division,
-                "weight": move.qty_done,
-                "volume": move.qty_done,
-                "gross_weight": move.move_id.weight,
-            }
-        )
-        return vals

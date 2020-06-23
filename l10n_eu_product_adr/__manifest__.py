@@ -15,6 +15,7 @@
     "data": [
         "data/product_dangerous_type_data.xml",
         "data/product_dangerous_class_data.xml",
+        "data/utility_models_data.xml",
         "security/ir.model.access.csv",
         "views/product_template_view.xml",
         "views/product_dangerous.xml",

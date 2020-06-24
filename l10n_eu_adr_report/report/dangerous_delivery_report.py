@@ -26,7 +26,7 @@ class DangerousDeliveryADR(models.AbstractModel):
         return docargs
 
     def _prepare_dangerous_lines(self, pickings):
-        # TODO report needs fixing as for now it cannot prepare any values for 
+        # TODO report needs fixing as for now it cannot prepare any values for
         # the report
         pass
         # vals = []
@@ -48,4 +48,3 @@ class DangerousDeliveryADR(models.AbstractModel):
                 }
             )
         return vals
-

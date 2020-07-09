@@ -44,7 +44,6 @@
                             <field name="class_id" />
                             <field name="limited_amount_id" />
                             <field name="storage_class_id" />
-                            <field name="transport_category_id" />
                             <field name="packaging_type_id" />
                             <field name="storage_temp_id" />
                             <field name="dangerous_selection_id" />

@@ -62,7 +62,6 @@ class ProductTemplate(models.Model):
     class_id = fields.Many2one("great.class")
     limited_amount_id = fields.Many2one("limited.amount")
     storage_class_id = fields.Many2one("storage.class")
-    transport_category_id = fields.Many2one("transport.category")
     packaging_type_id = fields.Many2one("packaging.type")
     storage_temp_id = fields.Many2one("storage.temp")
     dangerous_selection_id = fields.Many2one("dangerous.goods")

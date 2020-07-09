@@ -11,8 +11,7 @@
                         <group>
                             <field name="is_dangerous_good" />
                             <field name="is_dangerous_waste"/>
-                            <field name="un_number" attrs="{'invisible': [('is_dangerous_good', '=', False), ('is_dangerous_waste', '=', False)],
-                            'required': ['|',('is_dangerous_good', '=', True), ('is_dangerous_waste', '=', True)]}"/>
+                            <field name="un_number" />
                             <field name="un_no" />
                             <field name="un_description" />
                         </group>

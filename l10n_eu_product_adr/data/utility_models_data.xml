@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-<!-- <odoo noupdate=1> -->
-
+    <!-- <odoo noupdate=1> -->
     <record id="great_class_1" model="great.class">
         <field name="name">Kl. 2</field>
     </record>
@@ -38,14 +37,12 @@
     <record id="great_class_12" model="great.class">
         <field name="name">Kl. 9A</field>
     </record>
-
     <record id="limited_amount_1" model="limited.amount">
         <field name="name">LQ (Limited Quantity)</field>
     </record>
     <record id="limited_amount_2" model="limited.amount">
         <field name="name">DG (Dangerous Goods)</field>
     </record>
-
     <record id="storage_class_1" model="storage.class">
         <field name="name">LK 2</field>
     </record>
@@ -76,8 +73,6 @@
     <record id="storage_class_10" model="storage.class">
         <field name="name">LK 11,13</field>
     </record>
-
-
     <record id="packaging_type_1" model="packaging.type">
         <field name="name">Bottle</field>
     </record>
@@ -102,21 +97,18 @@
     <record id="packaging_type_8" model="packaging.type">
         <field name="name">Tube</field>
     </record>
-
     <record id="storage_temp_1" model="storage.temp">
         <field name="name">to 25°C</field>
     </record>
     <record id="storage_temp_2" model="storage.temp">
         <field name="name">to 30°C</field>
     </record>
-
     <record id="dangerous_goods_1" model="dangerous.goods">
         <field name="name">Dangerous goods</field>
     </record>
     <record id="dangerous_goods_2" model="dangerous.goods">
         <field name="name">Hazardous substances</field>
     </record>
-
     <record id="wgk_class_1" model="wgk.class">
         <field name="name">WGK 1</field>
     </record>
@@ -132,5 +124,4 @@
     <record id="wgk_class_5" model="wgk.class">
         <field name="name">WGK B</field>
     </record>
-
 </odoo>

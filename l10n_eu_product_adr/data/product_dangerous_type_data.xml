@@ -1,12 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="dangerous_type_class_1" model="product.dangerous.class.type">
         <field name="name">Explosives</field>
         <field name="division">1</field>
     </record>
     <record id="dangerous_type_class_2" model="product.dangerous.class.type">
-        <field name="name">Gases, including compressed, liquified, and dissolved under pressure gases and vapors </field>
+        <field
+            name="name"
+        >Gases, including compressed, liquified, and dissolved under pressure gases and vapors </field>
         <field name="division">2</field>
     </record>
     <record id="dangerous_type_class_2_1" model="product.dangerous.class.type">
@@ -26,7 +27,9 @@
         <field name="division">3</field>
     </record>
     <record id="dangerous_type_class_4_1" model="product.dangerous.class.type">
-        <field name="name">Flammable solids, self-reactive substances, and solid desensitized explosives</field>
+        <field
+            name="name"
+        >Flammable solids, self-reactive substances, and solid desensitized explosives</field>
         <field name="division">4.1</field>
     </record>
     <record id="dangerous_type_class_4_2" model="product.dangerous.class.type">
@@ -34,7 +37,9 @@
         <field name="division">4.2</field>
     </record>
     <record id="dangerous_type_class_4_3" model="product.dangerous.class.type">
-        <field name="name">Substances which, in contact with water, emit flammable gases</field>
+        <field
+            name="name"
+        >Substances which, in contact with water, emit flammable gases</field>
         <field name="division">4.3</field>
     </record>
     <record id="dangerous_type_class_5_1" model="product.dangerous.class.type">
@@ -65,5 +70,4 @@
         <field name="name">Miscellaneous dangerous substances and articles</field>
         <field name="division">9</field>
     </record>
-
 </odoo>

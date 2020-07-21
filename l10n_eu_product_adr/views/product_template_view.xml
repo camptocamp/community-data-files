@@ -15,9 +15,7 @@
                         <group>
                             <field name="is_dangerous_good" />
                             <field name="is_dangerous_waste" />
-                            <field name="un_number" />
-                            <field name="un_no" />
-                            <field name="un_description" />
+                            <field name="un_ref" />
                         </group>
                         <group name="dangerous_packing" string="Dangerous Packaging">
                             <field name="packaging_group" />
@@ -38,7 +36,7 @@
                             <field name="nag" />
                             <field name="veva_code_empty" />
                             <field name="veva_code_full" />
-                            <field name="un_report" />
+                            <field name="un_report" widget="url" />
                             <field name="sds" />
                             <field name="h_no" />
                             <field name="hazard_ind" />

@@ -21,9 +21,7 @@ LABELS_SELECTION = [
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    un_number = fields.Char(string="UN Number", size=4)
-    un_no = fields.Char(string="UN No")
-    un_description = fields.Text(string="UN Description")
+    un_ref = fields.Many2one("un.reference", string="UN Number")
     envir_hazardous = fields.Selection(
         [("yes", "Yes"), ("no", "No")], string="Environmentally hazardous"
     )
@@ -41,12 +39,12 @@ class ProductTemplate(models.Model):
     un_report = fields.Char(string="UN Report 38.3")
     sds = fields.Char(string="SDS")
     content_package = fields.Char(string="Content Packaging")
-    flash_point = fields.Char(string="Flash point")
+    flash_point = fields.Char(string="Flash point(°C)")
     h_no = fields.Char(string="H-No")
     hazard_ind = fields.Char(string="Hazard identification")
-    dg_unit = fields.Many2one("uom.uom", string="DG - Unit")
+    dg_unit = fields.Many2one("dangerous.uom", string="DG - Unit")
     packaging_group = fields.Selection(
-        [("1", "-"), ("2", "I"), ("3", "II"), ("4", "III")], string="Packaging Group"
+        [("1", "(-)"), ("2", "I"), ("3", "II"), ("4", "III")], string="Packaging Group"
     )
     transport_category = fields.Selection(
         [("1", "0"), ("2", "1"), ("3", "2"), ("4", "3"), ("5", "4")],
@@ -76,10 +74,6 @@ class ProductTemplate(models.Model):
     #     "product_template_id",
     #     string="Dangerous components",
     # )
-
-    _sql_constraints = [
-        ("un_number_unique", "unique(un_number)", "This UN code already exist")
-    ]
 
     # @api.constrains("dangerous_component_ids")
     # def _check_dangerous_choise(self):

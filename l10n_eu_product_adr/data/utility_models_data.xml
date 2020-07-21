@@ -101,6 +101,9 @@
         <field name="name">to 25°C</field>
     </record>
     <record id="storage_temp_2" model="storage.temp">
+        <field name="name">over 25°C</field>
+    </record>
+    <record id="storage_temp_3" model="storage.temp">
         <field name="name">to 30°C</field>
     </record>
     <record id="dangerous_goods_1" model="dangerous.goods">
@@ -123,5 +126,14 @@
     </record>
     <record id="wgk_class_5" model="wgk.class">
         <field name="name">WGK B</field>
+    </record>
+    <record id="dangerous_uom_1" model="dangerous.uom">
+        <field name="name">l (Liter)</field>
+    </record>
+    <record id="dangerous_uom_2" model="dangerous.uom">
+        <field name="name">kg (Kilogramm)</field>
+    </record>
+    <record id="dangerous_uom_3" model="dangerous.uom">
+        <field name="name">g (Gramm)</field>
     </record>
 </odoo>

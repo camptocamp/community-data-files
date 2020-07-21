@@ -18,3 +18,7 @@ access_dangerous_goods_user,access_dangerous_goods,model_dangerous_goods,base.gr
 access_dangerous_goods_manager,access_dangerous_goods,model_dangerous_goods,base.group_erp_manager,1,1,1,1
 access_wgk_class_user,access_wgk_class,model_wgk_class,base.group_user,1,0,0,0
 access_wgk_class_manager,access_wgk_class,model_wgk_class,base.group_erp_manager,1,1,1,1
+access_un_ref_class_user,access_un_ref_class,model_un_reference,base.group_user,1,0,0,0
+access_un_ref_class_manager,access_un_ref_class_manager,model_un_reference,base.group_erp_manager,1,1,1,1
+access_dang_uom_user,access_dang_uom_class,model_dangerous_uom,base.group_user,1,0,0,0
+access_dang_uom_manager,access_dang_uom_class_manager,model_dangerous_uom,base.group_erp_manager,1,1,1,1

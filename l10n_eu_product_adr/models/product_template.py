@@ -3,18 +3,18 @@
 from odoo import _, fields, models
 
 LABELS_SELECTION = [
-    ("1", "Kl. 2"),
-    ("2", "Kl. 2.1"),
-    ("3", "Kl. 2.2"),
-    ("4", "Kl. 3"),
-    ("5", "Kl. 4.1"),
-    ("6", "Kl. 4.2"),
-    ("7", "Kl. 4.3"),
-    ("8", "Kl. 5.1"),
-    ("9", "Kl. 5.2"),
-    ("10", "Kl. 8"),
-    ("11", "Kl. 9"),
-    ("12", "Kl. 9A"),
+    ("1", "2"),
+    ("2", "2.1"),
+    ("3", "2.2"),
+    ("4", "3"),
+    ("5", "4.1"),
+    ("6", "4.2"),
+    ("7", "4.3"),
+    ("8", "5.1"),
+    ("9", "5.2"),
+    ("10", "8"),
+    ("11", "9"),
+    ("12", "9A"),
 ]
 
 
@@ -40,7 +40,7 @@ class ProductTemplate(models.Model):
     veva_code_full = fields.Char(string="VeVA Code: Full package")
     un_report = fields.Char(string="UN Report 38.3")
     sds = fields.Char(string="SDS")
-    content_package = fields.Char(string="Content Packaging")
+    content_package = fields.Float(string="Content Packaging")
     flash_point = fields.Char(string="Flash point(°C)")
     h_no = fields.Char(string="H-No")
     hazard_ind = fields.Char(string="Hazard identification")
@@ -73,7 +73,7 @@ class ProductTemplate(models.Model):
     )
 
     def get_full_class_name(self):
-        class_name = "{}".format(self.un_number)
+        class_name = "{}".format(self.un_ref.name)
         if self.is_dangerous_waste:
             return _("WASTE ") + class_name
         else:

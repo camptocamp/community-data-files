@@ -18,5 +18,6 @@
         "security/ir.model.access.csv",
         "views/product_template_view.xml",
         "views/product_dangerous.xml",
+        "views/utility_models.xml",
     ],
 }

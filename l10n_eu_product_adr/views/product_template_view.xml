@@ -5,17 +5,24 @@
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_form_view" />
         <field name="arch" type="xml">
+            <xpath expr="//div[@name='options']" position="inside">
+                <div>
+                    <field name="is_dangerous" />
+                    <label for="is_dangerous" />
+                </div>
+            </xpath>
             <xpath expr="//page[last()]" position="after">
                 <page
                     name="dangerous"
                     string="Dangerous attributes"
-                    attrs="{'invisible':[('type', '!=', 'product')]}"
+                    attrs="{'invisible':['|',('type', '!=', 'product'), ('is_dangerous', '=', False)]}"
                 >
                     <group>
                         <group name="main_dangerous_info">
                             <field name="is_dangerous_good" />
                             <field name="is_dangerous_waste" />
                             <field name="un_ref" />
+                            <field name="un_description" />
                         </group>
                         <group name="dangerous_packing" string="Dangerous Packaging">
                             <field name="packaging_group" />
@@ -37,7 +44,7 @@
                             <field name="veva_code_empty" />
                             <field name="veva_code_full" />
                             <field name="un_report" widget="url" />
-                            <field name="sds" />
+                            <field name="sds" widget="url" />
                             <field name="h_no" />
                             <field name="hazard_ind" />
                             <field name="dg_unit" />

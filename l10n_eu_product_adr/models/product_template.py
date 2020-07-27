@@ -21,7 +21,9 @@ LABELS_SELECTION = [
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
+    is_dangerous = fields.Boolean(string="Dangerous product")
     un_ref = fields.Many2one("un.reference", string="UN Number")
+    un_description = fields.Char(related="un_ref.description", string="UN Description")
     envir_hazardous = fields.Selection(
         [("yes", "Yes"), ("no", "No")], string="Environmentally hazardous"
     )

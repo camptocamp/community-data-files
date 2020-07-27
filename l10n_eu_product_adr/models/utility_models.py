@@ -7,12 +7,16 @@ class UnReference(models.Model):
     _name = "un.reference"
     _description = "UN Reference"
 
-    name = fields.Char(string="Name", required=True, translate=True)
-    code = fields.Char(string="Code", required=True)
+    name = fields.Char(string="Code", required=True)
+    description = fields.Char(string="Description", required=True, translate=True)
 
     _sql_constraints = [
-        ("un_name_unique", "unique(name)", "This name already exist"),
-        ("un_code_unique", "unique(code)", "This code already exist"),
+        ("un_name_unique", "unique(name)", "This description already exist"),
+        (
+            "un_description_unique",
+            "unique(description)",
+            "This description already exist",
+        ),
     ]
 
     @api.model
@@ -20,14 +24,14 @@ class UnReference(models.Model):
         args = args or []
         domain = []
         if name:
-            domain = ["|", ("name", operator, name), ("code", operator, name)]
+            domain = ["|", ("name", operator, name), ("description", operator, name)]
         records = self.search(domain + args, limit=limit)
         return records.full_name_get()
 
     def full_name_get(self):
         res = []
         for rec in self:
-            res.append((rec.id, "{} {}".format(rec.name, rec.code)))
+            res.append((rec.id, "{} {}".format(rec.name, rec.description)))
         return res
 
 

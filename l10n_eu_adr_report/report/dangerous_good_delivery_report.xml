@@ -20,7 +20,7 @@
                     <td>Net mass (kg)</td>
                     <td>Cube (m 3 )</td>
                 </tr>
-                <t t-foreach="page_lines" t-as="line">
+                <t t-foreach="page_lines['dg_lines']" t-as="line">
                     <tr>
                         <td />
                         <td class="wide-col"><span t-esc="line['class']" /> <span

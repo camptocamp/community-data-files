@@ -8,54 +8,6 @@
         name="l10n_eu_adr_report.report_delivery_dangerous"
         file="l10n_eu_adr_report.report_delivery_dangerous"
     />
-    <template id="report_delivery_adr_next_page">
-        <table class="table table-condensed adr-report adr-text adr_next_page">
-            <tbody>
-                <tr>
-                    <td rowspan="3">1 Shipper/Consignor/Sender</td>
-                    <td colspan="2">2 Transport document number
-                        <span t-field='o.name' />
-                    </td>
-                </tr>
-                <tr>
-                    <td>3 Page 1 of ___________ pages</td>
-                    <td>4 Shipper’s reference</td>
-                </tr>
-                <tr>
-                    <td />
-                    <td>5 Freight forwarder’s reference</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-condensed adr-report adr-text adr_details">
-            <tbody>
-                <tr>
-                    <td>14 Shipping marks</td>
-                    <td
-                        class="wide-col"
-                    >Number and kind of packages; description of goods</td>
-                    <td>Gross mass (kg)</td>
-                    <td>Net mass (kg)</td>
-                    <td>Cube (m 3 )</td>
-                </tr>
-                <t t-foreach="next_page_lines" t-as="line">
-                    <tr>
-                        <td />
-                        <td class="wide-col"><span t-esc="line['class']" /> <span
-                                t-esc="line['name']"
-                            /> ( <span t-esc="line['division']" /> ) </td>
-                        <td t-esc="line['gross_weight']" />
-                        <td>
-                            <span t-esc="line['weight']" />
-                        </td>
-                        <td>
-                            <span t-esc="line['volume']" />
-                        </td>
-                    </tr>
-                </t>
-            </tbody>
-        </table>
-    </template>
     <template id="report_delivery_adr_details">
         <table class="table table-condensed adr-report adr_details">
             <tbody>
@@ -68,18 +20,18 @@
                     <td>Net mass (kg)</td>
                     <td>Cube (m 3 )</td>
                 </tr>
-                <t t-foreach="first_page_lines" t-as="line">
+                <t t-foreach="page_lines" t-as="line">
                     <tr>
                         <td />
                         <td class="wide-col"><span t-esc="line['class']" /> <span
                                 t-esc="line['name']"
-                            /> ( <span t-esc="line['division']" /> ) </td>
-                        <td t-esc="line['gross_weight']" />
+                            /> (  ) </td>
+                        <td t-esc="line['move_amount']" />
                         <td>
-                            <span t-esc="line['weight']" />
+                            <span t-esc="line['product_weight']" />
                         </td>
                         <td>
-                            <span t-esc="line['volume']" />
+                            <!-- <span t-esc="line['volume']" /> -->
                         </td>
                     </tr>
                 </t>
@@ -259,9 +211,6 @@
                         </tbody>
                     </table>
                     <t t-call="l10n_eu_adr_report.report_delivery_adr_text_footer" />
-                    <t t-if="next_page_lines">
-                        <t t-call="l10n_eu_adr_report.report_delivery_adr_next_page" />
-                    </t>
                 </div>
             </t>
         </t>

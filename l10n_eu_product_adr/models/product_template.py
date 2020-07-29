@@ -17,6 +17,8 @@ LABELS_SELECTION = [
     ("12", "9A"),
 ]
 
+TRANSPORT_CATEGORY = [("1", "0"), ("2", "1"), ("3", "2"), ("4", "3"), ("5", "4")]
+
 
 class ProductTemplate(models.Model):
     _inherit = "product.template"
@@ -48,8 +50,8 @@ class ProductTemplate(models.Model):
     packaging_group = fields.Selection(
         [("1", "(-)"), ("2", "I"), ("3", "II"), ("4", "III")], string="Packaging Group"
     )
-    transport_category = fields.Selection(
-        [("1", "0"), ("2", "1"), ("3", "2"), ("4", "3"), ("5", "4")],
+    transport_category = fields.Selection(TRANSPORT_CATEGORY
+        ,
         string="Transport Category",
     )
     tunnel_code = fields.Selection(

@@ -2,40 +2,40 @@
 <odoo>
     <!-- <odoo noupdate=1> -->
     <record id="great_class_1" model="great.class">
-        <field name="name">Kl. 2</field>
+        <field name="name">2</field>
     </record>
     <record id="great_class_2" model="great.class">
-        <field name="name">Kl. 2.1 </field>
+        <field name="name">2.1 </field>
     </record>
     <record id="great_class_3" model="great.class">
-        <field name="name">Kl. 2.2</field>
+        <field name="name">2.2</field>
     </record>
     <record id="great_class_4" model="great.class">
-        <field name="name">Kl. 3</field>
+        <field name="name">3</field>
     </record>
     <record id="great_class_5" model="great.class">
-        <field name="name">Kl. 4.1</field>
+        <field name="name">4.1</field>
     </record>
     <record id="great_class_6" model="great.class">
-        <field name="name">Kl. 4.2</field>
+        <field name="name">4.2</field>
     </record>
     <record id="great_class_7" model="great.class">
-        <field name="name">Kl. 4.3</field>
+        <field name="name">4.3</field>
     </record>
     <record id="great_class_8" model="great.class">
-        <field name="name">Kl. 5.1</field>
+        <field name="name">5.1</field>
     </record>
     <record id="great_class_9" model="great.class">
-        <field name="name">Kl. 5.2</field>
+        <field name="name">5.2</field>
     </record>
     <record id="great_class_10" model="great.class">
-        <field name="name">Kl. 8</field>
+        <field name="name">8</field>
     </record>
     <record id="great_class_11" model="great.class">
-        <field name="name">Kl. 9</field>
+        <field name="name">9</field>
     </record>
     <record id="great_class_12" model="great.class">
-        <field name="name">Kl. 9A</field>
+        <field name="name">9A</field>
     </record>
     <record id="limited_amount_1" model="limited.amount">
         <field name="name">LQ (Limited Quantity)</field>

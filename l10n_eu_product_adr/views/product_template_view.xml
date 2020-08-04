@@ -26,12 +26,18 @@
                         </group>
                         <group name="dangerous_packing" string="Dangerous Packaging">
                             <field name="packaging_group" />
-                            <field name="transport_category" attrs="{'required':[('is_dangerous','=',True)]}"/>
+                            <field
+                                name="transport_category"
+                                attrs="{'required':[('is_dangerous','=',True)]}"
+                            />
                             <field name="tunnel_code" />
                             <field name="label_first" />
                             <field name="label_second" />
                             <field name="label_third" />
-                            <field name="content_package" attrs="{'required':[('is_dangerous','=',True)]}"/>
+                            <field
+                                name="content_package"
+                                attrs="{'required':[('is_dangerous','=',True)]}"
+                            />
                             <field name="flash_point" />
                         </group>
                         <group name="hazardous_details">
@@ -47,13 +53,19 @@
                             <field name="sds" widget="url" />
                             <field name="h_no" />
                             <field name="hazard_ind" />
-                            <field name="dg_unit" />
+                            <field 
+                                name="dg_unit"
+                                attrs="{'required':[('is_dangerous','=',True)]}"
+                            />
                         </group>
                         <group name="storage" string="Storage">
                             <field name="class_id" />
                             <field name="limited_amount_id" />
                             <field name="storage_class_id" />
-                            <field name="packaging_type_id" attrs="{'required':[('is_dangerous','=',True)]}"/>
+                            <field
+                                name="packaging_type_id"
+                                attrs="{'required':[('is_dangerous','=',True)]}"
+                            />
                             <field name="storage_temp_id" />
                             <field name="dangerous_selection_id" />
                             <field name="wgk_class_id" />

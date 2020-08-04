@@ -50,9 +50,8 @@ class ProductTemplate(models.Model):
     packaging_group = fields.Selection(
         [("1", "(-)"), ("2", "I"), ("3", "II"), ("4", "III")], string="Packaging Group"
     )
-    transport_category = fields.Selection(TRANSPORT_CATEGORY
-        ,
-        string="Transport Category",
+    transport_category = fields.Selection(
+        TRANSPORT_CATEGORY, string="Transport Category",
     )
     tunnel_code = fields.Selection(
         [("1", "(-)"), ("2", "(D)"), ("3", "(E)"), ("4", "(D,E)")], string="Tunnel code"
@@ -75,8 +74,37 @@ class ProductTemplate(models.Model):
     )
 
     def get_full_class_name(self):
-        class_name = "{}".format(self.un_ref.name)
+        class_name = _("UN")
+
         if self.is_dangerous_waste:
-            return _("WASTE ") + class_name
-        else:
-            return class_name
+            class_name +=  _(" WASTE")
+        class_name += " {}, {}".format(self.un_ref.name, self.un_ref.description)
+
+        if self.nag:
+            class_name += _(", N.A.G ({})").format(self.nag)
+
+        if self.label_first:
+            class_name += ", {}".format(self._get_name_from_selection('label_first'))
+        if self.label_second and self.label_third:
+            class_name += ', ({}, {})'.format(
+                self._get_name_from_selection('label_second'), 
+                self._get_name_from_selection('label_third')
+            )
+        elif self.label_second :
+            class_name += ', ({})'.format(self._get_name_from_selection('label_second'))
+
+        if self.packaging_group:
+            class_name += ", {}".format(self._get_name_from_selection('packaging_group'))
+
+        if self.tunnel_code:
+            class_name += ", {}".format(self._get_name_from_selection('tunnel_code'))
+        
+        if self.envir_hazardous == 'yes':
+            class_name += ", {}".format(_('Environmentally hazardous'))
+
+        return class_name
+
+
+    def _get_name_from_selection(self, field_name):
+        temp_dict = dict(self._fields[field_name].selection)
+        return temp_dict.get(getattr(self, field_name))

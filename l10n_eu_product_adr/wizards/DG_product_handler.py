@@ -21,7 +21,12 @@ class DGProductCounter(models.TransientModel):
             "total_section": {},
         }
         for pick in self.picking_ids:
-            for move_line in pick.move_lines:
+            if pick.state == 'done':
+                moves = pick.move_lines.filtered(lambda l: l.state == 'done')
+            else:
+                moves = pick.move_lines
+
+            for move_line in moves:
                 if move_line.product_id.is_dangerous:
                     vals["dg_lines"] += self._get_DG_move_line_vals(move_line)
 
@@ -93,6 +98,10 @@ class DGProductCounter(models.TransientModel):
 
     def _get_DG_move_line_vals(self, move):
         product = move.product_id
+        if move.state == 'done':
+            qty = move.quantity_done
+        else:
+            qty = move.product_uom_qty
         return [
             {
                 "product": product,
@@ -100,12 +109,10 @@ class DGProductCounter(models.TransientModel):
                 "dg_unit": product.dg_unit.name,
                 "class": product.product_tmpl_id.get_full_class_name(),
                 "packaging_type": product.packaging_type_id,
-                # quantity_done
-                "qty_amount": move.product_uom_qty,
+                "qty_amount": qty,
                 "product_weight": product.content_package,
                 "column_index": str(product.transport_category),
-                "dangerous_amount": move.product_uom_qty
-                * product.content_package,
+                "dangerous_amount": qty * product.content_package,
             }
         ]
 

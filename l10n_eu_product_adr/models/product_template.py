@@ -77,33 +77,34 @@ class ProductTemplate(models.Model):
         class_name = _("UN")
 
         if self.is_dangerous_waste:
-            class_name +=  _(" WASTE")
+            class_name += _(" WASTE")
         class_name += " {}, {}".format(self.un_ref.name, self.un_ref.description)
 
         if self.nag:
             class_name += _(", N.A.G ({})").format(self.nag)
 
         if self.label_first:
-            class_name += ", {}".format(self._get_name_from_selection('label_first'))
+            class_name += ", {}".format(self._get_name_from_selection("label_first"))
         if self.label_second and self.label_third:
-            class_name += ', ({}, {})'.format(
-                self._get_name_from_selection('label_second'), 
-                self._get_name_from_selection('label_third')
+            class_name += ", ({}, {})".format(
+                self._get_name_from_selection("label_second"),
+                self._get_name_from_selection("label_third"),
             )
-        elif self.label_second :
-            class_name += ', ({})'.format(self._get_name_from_selection('label_second'))
+        elif self.label_second:
+            class_name += ", ({})".format(self._get_name_from_selection("label_second"))
 
         if self.packaging_group:
-            class_name += ", {}".format(self._get_name_from_selection('packaging_group'))
+            class_name += ", {}".format(
+                self._get_name_from_selection("packaging_group")
+            )
 
         if self.tunnel_code:
-            class_name += ", {}".format(self._get_name_from_selection('tunnel_code'))
-        
-        if self.envir_hazardous == 'yes':
-            class_name += ", {}".format(_('Environmentally hazardous'))
+            class_name += ", {}".format(self._get_name_from_selection("tunnel_code"))
+
+        if self.envir_hazardous == "yes":
+            class_name += ", {}".format(_("Environmentally hazardous"))
 
         return class_name
-
 
     def _get_name_from_selection(self, field_name):
         temp_dict = dict(self._fields[field_name].selection)

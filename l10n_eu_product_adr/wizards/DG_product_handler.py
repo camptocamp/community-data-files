@@ -1,10 +1,9 @@
 # Copyright 2020 Iryna Vyshnevska (Camptocamp)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
-from odoo import fields, models
 from itertools import groupby
 
-from ..models.product_template import TRANSPORT_CATEGORY
+from odoo import fields, models
 
 
 class DGProductCounter(models.TransientModel):
@@ -21,8 +20,8 @@ class DGProductCounter(models.TransientModel):
             "total_section": {},
         }
         for pick in self.picking_ids:
-            if pick.state == 'done':
-                moves = pick.move_lines.filtered(lambda l: l.state == 'done')
+            if pick.state == "done":
+                moves = pick.move_lines.filtered(lambda l: l.state == "done")
             else:
                 moves = pick.move_lines
 
@@ -37,68 +36,71 @@ class DGProductCounter(models.TransientModel):
         return vals
 
     def _compute_total_points(self, vals):
-        import pdb
-        # pdb.set_trace()
-
-        index = {'1': 0.0, '2': 0.0, '3': 0.0, '4': 0.0, '5': 0.0}
+        index = {"1": 0.0, "2": 0.0, "3": 0.0, "4": 0.0, "5": 0.0}
         total_vals = {
-            'total_units': index.copy(),
-            'factor': index.copy(),
-            'mass_points': index.copy(),
-            'total_points': 0.0,
+            "total_units": index.copy(),
+            "factor": index.copy(),
+            "mass_points": index.copy(),
+            "total_points": 0.0,
         }
         self._init_total_vals(total_vals)
 
         for k in index.keys():
-            total_vals['total_units'][k] = self._sum_values(vals, 'dangerous_amount', k)
-            total_vals['mass_points'][k] = total_vals['total_units'][k] * total_vals['factor'][k]
+            total_vals["total_units"][k] = self._sum_values(vals, "dangerous_amount", k)
+            total_vals["mass_points"][k] = (
+                total_vals["total_units"][k] * total_vals["factor"][k]
+            )
 
         self._is_limit_exceeded(total_vals)
         return total_vals
 
     def _sum_values(self, vals, field, index):
-        return sum([
-            item[field] for item in vals if item['column_index'] == index
-        ])
+        return sum([item[field] for item in vals if item["column_index"] == index])
 
     def _is_limit_exceeded(self, vals):
-        vals['warn'] = False
-        vals['total_points'] = sum(vals['mass_points'].values())
-        if vals['total_points'] > 1000.0:
-            vals['warn'] = True
+        vals["warn"] = False
+        vals["total_points"] = sum(vals["mass_points"].values())
+        if vals["total_points"] > 1000.0:
+            vals["warn"] = True
 
     def _init_total_vals(self, vals):
-        vals['factor']['1'] = 0.0
-        vals['factor']['2'] = 50.0
-        vals['factor']['3'] = 3.0
-        vals['factor']['4'] = 1.0
-        vals['factor']['5'] = 0.0
-
+        vals["factor"]["1"] = 0.0
+        vals["factor"]["2"] = 50.0
+        vals["factor"]["3"] = 3.0
+        vals["factor"]["4"] = 1.0
+        vals["factor"]["5"] = 0.0
 
     def _merge_products_data(self, vals):
         # merge lines for same product
         # unit measurement on stock is not concidered
         new_vals = []
-        grouped_lines = groupby(sorted(vals, key=lambda l: l.get('product_id')), key=lambda l: l.get('product_id'))
+        grouped_lines = groupby(
+            sorted(vals, key=lambda l: l.get("product_id")),
+            key=lambda l: l.get("product_id"),
+        )
 
-        for k, v in grouped_lines:
+        for v in grouped_lines.values():
             lines = list(v)
             new_vals.append(lines[0])
-            new_vals[-1]['qty_amount'] = sum([l.get('qty_amount') for l in lines])
-            new_vals[-1]['product_weight'] = sum([l.get('product_weight') for l in lines])
-            new_vals[-1]['dangerous_amount'] = sum([l.get('dangerous_amount') for l in lines])
-            new_vals[-1]['class'] += ', {}, {}, {}, {}'.format(
-                new_vals[-1]['qty_amount'],
-                new_vals[-1]['packaging_type'].name,
-                new_vals[-1]['dangerous_amount'],
-                new_vals[-1]['dg_unit'],
+            new_vals[-1]["qty_amount"] = sum([l.get("qty_amount") for l in lines])
+            new_vals[-1]["product_weight"] = sum(
+                [l.get("product_weight") for l in lines]
+            )
+            new_vals[-1]["dangerous_amount"] = sum(
+                [l.get("dangerous_amount") for l in lines]
+            )
+            new_vals[-1]["class"] += ", {}, {}, {}, {}".format(
+                new_vals[-1]["qty_amount"],
+                new_vals[-1]["packaging_type"].name,
+                new_vals[-1]["dangerous_amount"],
+                new_vals[-1]["dg_unit"],
             )
 
         return new_vals
 
     def _get_DG_move_line_vals(self, move):
         product = move.product_id
-        if move.state == 'done':
+        if move.state == "done":
             qty = move.quantity_done
         else:
             qty = move.product_uom_qty

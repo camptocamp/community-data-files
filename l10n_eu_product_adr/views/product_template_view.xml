@@ -53,7 +53,7 @@
                             <field name="sds" widget="url" />
                             <field name="h_no" />
                             <field name="hazard_ind" />
-                            <field 
+                            <field
                                 name="dg_unit"
                                 attrs="{'required':[('is_dangerous','=',True)]}"
                             />

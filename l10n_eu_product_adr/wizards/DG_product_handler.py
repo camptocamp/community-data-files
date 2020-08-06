@@ -11,7 +11,6 @@ class DGProductCounter(models.TransientModel):
     _description = "Wizard to count and prepare data fro dangerous goods report"
 
     picking_ids = fields.Many2many("stock.picking", string="Pickings")
-    # pallet_ids = fields.Many2many('stock.picking', string='Pickings')
 
     def prepare_DG_data(self):
 
@@ -28,8 +27,6 @@ class DGProductCounter(models.TransientModel):
             for move_line in moves:
                 if move_line.product_id.is_dangerous:
                     vals["dg_lines"] += self._get_DG_move_line_vals(move_line)
-
-        # for pallet in self.pallet_ids
 
         vals["dg_lines"] = self._merge_products_data(vals["dg_lines"])
         vals["total_section"] = self._compute_total_points(vals["dg_lines"])
@@ -79,7 +76,7 @@ class DGProductCounter(models.TransientModel):
             key=lambda l: l.get("product_id"),
         )
 
-        for v in grouped_lines.values():
+        for _, v in grouped_lines:
             lines = list(v)
             new_vals.append(lines[0])
             new_vals[-1]["qty_amount"] = sum([l.get("qty_amount") for l in lines])
@@ -117,6 +114,3 @@ class DGProductCounter(models.TransientModel):
                 "dangerous_amount": qty * product.content_package,
             }
         ]
-
-    def _get_DG_pallet_vals(self, pallet):
-        return []

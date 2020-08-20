@@ -29,11 +29,15 @@ class DGProductCounter(models.TransientModel):
                     vals["dg_lines"] += self._get_DG_move_line_vals(move_line)
 
         vals["dg_lines"] = self._merge_products_data(vals["dg_lines"])
-        vals["total_section"] = self._compute_total_points(vals["dg_lines"])
+        vals["total_section"] = self._compute_points_per_product(vals["dg_lines"])
+        vals["total_section"]["total_points"] = self._compute_total_points(
+            vals["total_section"]
+        )
+        vals["total_section"]["warn"] = self._is_limit_exceeded(vals["total_section"])
         return vals
 
-    def _compute_total_points(self, vals):
-        index = {"1": 0.0, "2": 0.0, "3": 0.0, "4": 0.0, "5": 0.0}
+    def _compute_points_per_product(self, vals):
+        index = {}.fromkeys(["1", "2", "3", "4", "5"], 0.0)
         total_vals = {
             "total_units": index.copy(),
             "factor": index.copy(),
@@ -44,21 +48,25 @@ class DGProductCounter(models.TransientModel):
 
         for k in index.keys():
             total_vals["total_units"][k] = self._sum_values(vals, "dangerous_amount", k)
-            total_vals["mass_points"][k] = (
+            total_vals["mass_points"][k] = self._apply_rounding(
                 total_vals["total_units"][k] * total_vals["factor"][k]
             )
-
-        self._is_limit_exceeded(total_vals)
         return total_vals
 
     def _sum_values(self, vals, field, index):
         return sum([item[field] for item in vals if item["column_index"] == index])
 
+    def _compute_total_points(self, vals):
+        return self._apply_rounding(sum(vals["mass_points"].values()))
+
+    def _apply_rounding(self, amount):
+        # should follow precision on product
+        return round(amount, 1)
+
     def _is_limit_exceeded(self, vals):
-        vals["warn"] = False
-        vals["total_points"] = sum(vals["mass_points"].values())
         if vals["total_points"] > 1000.0:
-            vals["warn"] = True
+            return True
+        return False
 
     def _init_total_vals(self, vals):
         vals["factor"]["1"] = 0.0

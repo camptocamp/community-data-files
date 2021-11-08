@@ -18,8 +18,10 @@ class ProductTemplate(models.Model):
     adr_label_ids = fields.Many2many(
         "adr.label", related="adr_goods_id.label_ids", readonly=True
     )
-    adr_limited_quantity = fields.Char(
-        related="adr_goods_id.limited_quantity",
+    adr_limited_quantity = fields.Boolean(
+        "Limited Qty",
+        compute="_compute_adr_limited_quantity",
+        # store=True
     )
     adr_packing_instruction_ids = fields.Many2many(
         "adr.packing.instruction",
@@ -41,3 +43,20 @@ class ProductTemplate(models.Model):
         """
         if not self.is_dangerous and self.adr_goods_id:
             self.adr_goods_id = False
+
+    @api.depends(
+        "adr_goods_id.limited_quantity_uom", "adr_goods_id.limited_quantity", "uom_id"
+    )
+    def _compute_adr_limited_quantity(self):
+        for record in self:
+            p_uom = record.uom_id
+            adr_uom = record.adr_goods_id.limited_quantity_uom
+            if record.is_dangerous and p_uom and adr_uom:
+                adr_qty = record.adr_goods_id.limited_quantity
+                # TODO not safe with different categories
+                qty = p_uom._compute_quantity(
+                    adr_qty, record.adr_goods_id.limited_quantity, adr_uom
+                )
+                record.adr_limited_quantity = record.weight > qty
+            else:
+                record.adr_limited_quantity = False

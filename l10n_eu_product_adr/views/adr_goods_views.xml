@@ -24,6 +24,7 @@
                         </group>
                         <group string="Transport">
                             <field name="limited_quantity" />
+                            <field name="limited_quantity_uom" />
                             <field
                                 name="packing_instruction_ids"
                                 options="{'no_create': True}"

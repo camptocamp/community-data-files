@@ -14,6 +14,7 @@
     "depends": ["product", "stock"],
     "development_status": "Beta",
     "data": [
+        "data/uom_data.xml",
         "data/adr_class.xml",
         "data/adr_label.xml",
         "data/adr_packing_instruction.xml",

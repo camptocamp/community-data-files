@@ -19,4 +19,8 @@
         # security
         "security/ir.model.access.csv",
     ],
+    "external_dependencies": {
+        "python": ["openupgradelib"],
+    },
+    "pre_init_hook": "pre_init_hook",
 }

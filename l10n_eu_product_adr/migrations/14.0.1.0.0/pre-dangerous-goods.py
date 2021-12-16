@@ -67,8 +67,25 @@ def move_records_to_new_module(cr):
     openupgrade.rename_xmlids(cr, xmlids)
 
 
+def backup_adr_code(cr):
+    # Create a new column in which we store the related adr code,
+    # so that we will be able to retrieve the adr.goods record in the
+    # post migration script.
+    cr.execute("ALTER TABLE product_product ADD adr_number varchar;")
+    backup_query = """
+        UPDATE product_product pp
+        SET adr_number = ur.name
+        FROM un_reference ur
+        WHERE ur.id = pp.un_ref
+        AND pp.un_ref IS NOT NULL;
+    """
+    cr.execute(backup_query)
+
+
 def migrate(cr, version):
-    """Move fields and records not present in the new implementation to
-    `l10n_eu_product_adr_dangerous_goods`."""
+    # Move fields and records not present in the new implementation to
+    # `l10n_eu_product_adr_dangerous_goods`.
     move_fields_to_new_module(cr)
     move_records_to_new_module(cr)
+    # Backup the adr code on product
+    backup_adr_code(cr)

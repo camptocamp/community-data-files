@@ -36,6 +36,17 @@ FIELD_NAMES_TO_MOVE = {
         "flash_point",
         "wgk_class_id",
         "h_no",
+        "envir_hazardous ",
+        "packaging_group ",
+        "hazard_ind ",
+        "sds ",
+        "currency_id ",
+        "veg ",
+        "voc ",
+        "content_package ",
+        "label_first ",
+        "label_second ",
+        "label_third ",
     ],
 }
 MODELS_TO_MOVE = (

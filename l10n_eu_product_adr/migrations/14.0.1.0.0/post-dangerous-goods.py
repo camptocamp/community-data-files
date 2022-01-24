@@ -9,7 +9,10 @@ def assign_adr_class(cr):
         FROM (
             SELECT ag.id as adr_goods_id, array_agg(pp.id) as product_ids
             FROM product_product pp
-            INNER JOIN adr_goods ag ON pp.adr_number = ag.un_number
+            INNER JOIN adr_goods ag ON (
+                pp.adr_number = ag.un_number
+                AND pp.transport_category = ag.transport_category
+            )
             WHERE pp.adr_number IS NOT NULL
             GROUP BY ag.id
         ) AS subquery

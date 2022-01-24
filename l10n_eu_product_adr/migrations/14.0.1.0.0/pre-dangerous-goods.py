@@ -29,7 +29,6 @@ FIELD_NAMES_TO_MOVE = {
         "nag",
         "veva_code_empty",
         "veva_code_full",
-        "un_report",
         "storage_class_id",
         "packaging_type_id",
         "storage_temp_id",
@@ -39,14 +38,12 @@ FIELD_NAMES_TO_MOVE = {
         "envir_hazardous ",
         "packaging_group ",
         "hazard_ind ",
-        "sds ",
-        "currency_id ",
-        "veg ",
         "voc ",
         "content_package ",
         "label_first ",
         "label_second ",
         "label_third ",
+        "dg_unit",
     ],
 }
 MODELS_TO_MOVE = (
@@ -55,6 +52,7 @@ MODELS_TO_MOVE = (
     "storage.temp",
     "wgk.class",
     "limited.amount",
+    "dangerous.uom",
 )
 
 
@@ -93,7 +91,33 @@ def backup_adr_code(cr):
     cr.execute(backup_query)
 
 
+def update_transport_category(cr):
+    # In the previous version (13.0) the transport category selection was
+    # [("1", "0"), ("2", "1"), ("3", "2"), ("4", "3"), ("5", "4")]
+    # In the new one, the selection has been updated like so
+    # [
+    #     ("0", "0"),
+    #     ("1", "1"),
+    #     ("2", "2"),
+    #     ("3", "3"),
+    #     ("4", "4"),
+    #     ("-", "-"),
+    #     ("CARRIAGE_PROHIBITED", "CARRIAGE PROHIBITED"),
+    #     ("NOT_SUBJECT_TO_ADR", "Not subject to ADR"),
+    # ]
+    # Updating this now, so we can find the right adr.goods record
+    # in the post script
+    for prev, new in enumerate(range(5), start=1):
+        query = """
+            UPDATE product_product
+            SET transport_category = %(new)s
+            WHERE transport_category = %(prev)s;
+        """
+        cr.execute(query, {"new": str(new), "prev": str(prev)})
+
+
 def migrate(cr, version):
+    update_transport_category(cr)
     # Move fields and records not present in the new implementation to
     # `l10n_eu_product_adr_dangerous_goods`.
     move_fields_to_new_module(cr)

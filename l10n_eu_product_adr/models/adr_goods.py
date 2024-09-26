@@ -82,14 +82,22 @@ class AdrGoods(models.Model):
         """Allow to search for UN Number"""
         args = list(args or [])
         if name and operator in ("ilike", "="):
-            res = self.search(AND([args, [("un_number", operator, name)]]), limit=limit)
-            if res:
-                return res.name_get()
+            record = self.search(
+                AND([args, [("un_number", operator, name)]]), limit=limit
+            )
+            if record:
+                return [(rec.id, rec.display_name) for rec in record]
         return super().name_search(name=name, args=args, operator=operator, limit=limit)
 
-    def name_get(self):
+    @api.depends(
+        "un_number",
+        "name",
+        "transport_category",
+        "limited_quantity",
+        "limited_quantity_uom_id",
+    )
+    def _compute_display_name(self):
         """Format the class name"""
-        res = []
         for rec in self:
             name = f"{rec.un_number} {rec.name}"
             affixes = []
@@ -97,12 +105,13 @@ class AdrGoods(models.Model):
                 affixes.append(_("cat:%s", rec.transport_category))
             if rec.limited_quantity:
                 affixes.append(
-                    _("qty:{limited_quantity} {limited_quantity_uom_id}").format(
-                        limited_quantity=rec.limited_quantity,
-                        limited_quantity_uom_id=rec.limited_quantity_uom_id.name,
-                    )
+                    _("qty:%(limited_quantity)s %(limited_quantity_uom_id)s")
+                    % {
+                        "limited_quantity": rec.limited_quantity,
+                        "limited_quantity_uom_id": rec.limited_quantity_uom_id.name,
+                    }
                 )
             if affixes:
                 name += " (%s)" % (", ".join(affixes))
-            res.append((rec.id, name))
-        return res
+
+            rec.display_name = name

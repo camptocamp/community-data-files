@@ -176,12 +176,10 @@ def parse_limited_quantity(row, split=True):
         if "BP 251" in value:  # known case
             return False, False
         else:
-            raise ValueError("Cannot parse limited quantity: %s (%s)" % (value, row))
+            raise ValueError(f"Cannot parse limited quantity: {value} ({row})")
     quantity, uom_name = match.groups()
     if uom_name.lower() not in uom_map:
-        raise ValueError(
-            "Unknown uom %s in limited quantity %s (%s)" % (uom_name, value, row)
-        )
+        raise ValueError(f"Unknown uom {uom_name} in limited quantity {value} ({row})")
     return quantity, uom_map[uom_name.lower()]
 
 
@@ -321,7 +319,7 @@ def parse_transport_category(row):
         if not match:
             raise ValueError(
                 "Unknown value for transport code/tunnel restriction code: "
-                "%s (%s)" % (value, row)
+                "{value} ({row})"
             )
         category = match.groups()[0].strip()
         tunnel_restriction_code = match.groups()[1].strip()
@@ -335,8 +333,8 @@ def parse_transport_category(row):
         raise ValueError(f"Invalid transport category {category} in cell value {value}")
     if tunnel_restriction_code not in valid_tunnel_codes:
         raise ValueError(
-            "Invalid tunnel restriction code %s in cell value %s"
-            % (tunnel_restriction_code, value)
+            f"Invalid tunnel restriction code {tunnel_restriction_code} "
+            "in cell value {value}"
         )
     return category, tunnel_restriction_code
 
@@ -414,7 +412,7 @@ def transform_row(root, row):
         if field not in transformers:
             continue
         value = row[index]
-        if isinstance(value, (int, float)):
+        if isinstance(value, int | float):
             value = str(value)
         try:
             transformers[field](record, value, row)

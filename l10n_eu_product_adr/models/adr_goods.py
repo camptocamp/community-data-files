@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
-from odoo.osv.expression import AND
+from odoo.fields import Domain
 
 from .common import TRANSPORT_CATEGORIES, TUNNEL_RESTRICTION_CODES
 
@@ -78,16 +78,18 @@ class AdrGoods(models.Model):
                 )
 
     @api.model
-    def name_search(self, name="", args=None, operator="ilike", limit=100):
+    def name_search(self, name="", domain=None, operator="ilike", limit=100):
         """Allow to search for UN Number"""
-        args = list(args or [])
+        domain = Domain(domain or Domain.TRUE)
         if name and operator in ("ilike", "="):
             record = self.search(
-                AND([args, [("un_number", operator, name)]]), limit=limit
+                Domain.AND([domain, Domain("un_number", operator, name)]), limit=limit
             )
             if record:
                 return [(rec.id, rec.display_name) for rec in record]
-        return super().name_search(name=name, args=args, operator=operator, limit=limit)
+        return super().name_search(
+            name=name, domain=domain, operator=operator, limit=limit
+        )
 
     @api.depends(
         "un_number",
